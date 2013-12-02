@@ -24,11 +24,12 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080004;
-        public static final int button1=0x7f080000;
-        public static final int button2=0x7f080001;
-        public static final int progressBar1=0x7f080003;
-        public static final int textView1=0x7f080002;
+        public static final int action_settings=0x7f080005;
+        public static final int button1=0x7f080001;
+        public static final int listButton=0x7f080002;
+        public static final int listView1=0x7f080000;
+        public static final int progressBar1=0x7f080004;
+        public static final int textView1=0x7f080003;
     }
     public static final class layout {
         public static final int activity_list_view=0x7f030000;
@@ -38,15 +39,17 @@ public final class R {
     }
     public static final class menu {
         public static final int list_view=0x7f070000;
-        public static final int main=0x7f070001;
-        public static final int map=0x7f070002;
-        public static final int splash_screen=0x7f070003;
+        public static final int locations=0x7f070001;
+        public static final int main=0x7f070002;
+        public static final int map=0x7f070003;
+        public static final int splash_screen=0x7f070004;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
         public static final int title_activity_list_view=0x7f050004;
+        public static final int title_activity_locations=0x7f050006;
         public static final int title_activity_map=0x7f050005;
         public static final int title_activity_splash_screen=0x7f050003;
     }

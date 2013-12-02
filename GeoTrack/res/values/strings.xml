@@ -7,5 +7,6 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_list_view">ListView</string>
     <string name="title_activity_map">Map</string>
+    <string name="title_activity_locations">Locations</string>
 
 </resources>
