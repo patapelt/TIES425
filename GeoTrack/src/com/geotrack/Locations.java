@@ -2,6 +2,8 @@ package com.geotrack;
 
 import java.util.ArrayList;
 
+import com.google.android.maps.GeoPoint;
+
 
 import android.location.Location;
 
@@ -21,5 +23,10 @@ public class Locations {
 
 	public ArrayList<Location> getLocations() {
 		return locations;
+	}
+	
+	public static GeoPoint toGeoPoint(Location location) {
+		return new GeoPoint((int) (location.getLatitude() * 1E6),
+				(int) (location.getLongitude() * 1E6));
 	}
 }

@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 
 public class LocationList extends Activity {
-
+ 
 	private Locations locations = Locations.getInstance();
 	//private LocationAdapter locationAdapter;
 	
