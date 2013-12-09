@@ -26,38 +26,6 @@ public class CustomAdapter extends ArrayAdapter<Location> {
 	    this.layoutResourceId = textViewResourceId;
 	    this.values = values;
 	  }
-	  /*
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View row = convertView;
-			LocationHolder holder = null;
-
-			if (row == null) {
-				LayoutInflater inflater = (((Activity) context).getLayoutInflater());
-				row = inflater.inflate(R.layout.rowlayout, null);
-				//row = inflater.inflate(layoutResourceId, parent, false);
-				holder = new LocationHolder();
-				holder.time = (TextView) row.findViewById(R.id.time);
-				holder.location = (TextView) row.findViewById(R.id.location);
-				holder.image = (ImageView) row.findViewById(R.id.icon);
-				row.setTag(holder);
-			} else
-				holder = (LocationHolder) row.getTag();
-
-			Location location = values.get(position);
-			Date date = new Date(location.getTime());
-			holder.time.setText(date.toLocaleString());
-			holder.location.setText(String.format("%f, %f",
-					location.getLatitude(), location.getLongitude()));
-			holder.image.setImageResource(R.drawable.ic_launcher);
-			return row;
-		}
-
-		
-		static class LocationHolder {
-			ImageView image;
-			TextView time;
-			TextView location;
-		}*/
 
 
 	 

@@ -23,25 +23,7 @@ public class LocationList extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {			
 		super.onCreate(savedInstanceState);
 		
-		
-	
-	
-		/*
-		ArrayList<Location> list = new ArrayList<Location>();
-		list.add("eoritjio");
-		list.add("oeitoji");
-		*/
-		/*
-		Bundle extras = getIntent().getExtras();
-		if (extras != null) {
-		    String value = extras.getString("new_variable_name");
-		    list.add(value);
-		}  */
-		
-
-		//setContentView(R.layout.rowlayout);
-		customadapter = new CustomAdapter(this, R.layout.rowlayout, locations.getLocations());
-		//setListAdapter(new CustomAdapter(this, locations.getLocations()));
+		customadapter = new CustomAdapter(this, R.layout.rowlayout, locations.getLocations());	
 		setListAdapter(customadapter);
         
 
@@ -49,8 +31,7 @@ public class LocationList extends ListActivity {
 	
 	public void onListItemClick(ListView listview, View view, int position,
 			long id) {
-		//Toast.makeText(getApplicationContext(), Integer.toString(position), Toast.LENGTH_SHORT).show();
-		
+
 		Location location = customadapter.getItem(position);
 		if (location == null)
 			return;
