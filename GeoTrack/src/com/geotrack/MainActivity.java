@@ -58,7 +58,7 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
 
-	private void openAbout() {
+	public void openAbout() {
 		
         AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
 

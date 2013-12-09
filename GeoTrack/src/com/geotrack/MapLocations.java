@@ -118,7 +118,7 @@ public class MapLocations extends MapActivity {
 		criteria.setCostAllowed(true);
 		criteria.setPowerRequirement(Criteria.POWER_HIGH);
 		String provider = mLocationManager.getBestProvider(criteria, false);
-		mLocationManager.requestLocationUpdates(provider, 0, 0, mLocationListener);
+		mLocationManager.requestLocationUpdates(provider, 5000, 15, mLocationListener);
 	}
 	
 	public void onClick(View w) {
