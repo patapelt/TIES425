@@ -67,7 +67,7 @@ public class MainActivity extends FragmentActivity {
 
         
         alertbox.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
-                // click listener on the alert box
+               
                 public void onClick(DialogInterface arg0, int arg1) {
 
                 }

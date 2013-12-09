@@ -1,11 +1,7 @@
 package com.geotrack;
 
 import java.util.ArrayList;
-import java.util.Date;
-
 import com.google.android.maps.GeoPoint;
-
-
 import android.location.Location;
 
 public class Locations {
@@ -18,8 +14,11 @@ public class Locations {
 			instance = new Locations();
 		return instance;
 	}
+	
 	public void add(Location location) {
+		if(!this.locations.contains(location)) {
 		this.locations.add(location);
+		}
 	}
 
 	public ArrayList<Location> getLocations() {

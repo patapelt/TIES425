@@ -4,13 +4,12 @@ package com.geotrack;
 
 import android.location.Location;
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
+
 
 
 public class LocationList extends ListActivity {

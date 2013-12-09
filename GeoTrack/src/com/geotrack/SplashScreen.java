@@ -17,7 +17,7 @@ public class SplashScreen extends FragmentActivity {
 	public Locations locations = Locations.getInstance();
 	boolean loaded = false;
 	LocationManager mLocationManager;
-   // LocationListener mLocationListener; 
+   
 	
 	
 	@Override
@@ -47,14 +47,6 @@ public class SplashScreen extends FragmentActivity {
 		public void onLocationChanged(Location location) {
 			Toast.makeText(getApplicationContext(), "Latitude: " + location.getLatitude()+" Longitude: "+location.getLongitude(), Toast.LENGTH_SHORT).show();
 			locations.add(location);
-			
-			/*
-			Intent i = new Intent(SplashScreen.this, MainActivity.class);		
-			startActivity(i);
-		    finish();
-*/
-	
-			
 			if(loaded == false) {
 		    loaded = true;
 			Intent intent = new Intent(SplashScreen.this, MainActivity.class);

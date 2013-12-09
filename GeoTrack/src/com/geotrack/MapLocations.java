@@ -3,7 +3,6 @@ package com.geotrack;
 import java.util.List;
 
 import com.google.android.maps.GeoPoint;
-import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
@@ -28,7 +27,7 @@ public class MapLocations extends MapActivity {
 	private Locations locations = Locations.getInstance();
 	private LocationManager mLocationManager;
 	private ItemsOverlay itemsoverlay;
-	//private ItemizedOverlay<OverlayItem> itemsoverlay;
+	
 
 	private List<Overlay> mapOverlays;
 	private MapController mapcontroller;
@@ -55,17 +54,16 @@ public class MapLocations extends MapActivity {
 			OverlayItem overlayitem = new OverlayItem(Locations.toGeoPoint(location),"Location","Latitude: "+String.valueOf(location.getLatitude())+"\n"+"Longitude: " +String.valueOf(location.getLongitude()));
 			
 			itemsoverlay.addOverlay(overlayitem);
-	        //mapOverlays.add(itemsoverlay);
+	        
 		}
 		
 		
         this.mapcontroller = mapView.getController();
 		
 		Intent intent = this.getIntent();
-		int lat = intent.getIntExtra("latitude", Integer.MAX_VALUE);
-		int lon = intent.getIntExtra("longitude", Integer.MAX_VALUE);
-		if (lat != Integer.MAX_VALUE && lon != Integer.MAX_VALUE)
-			mapcontroller.animateTo(new GeoPoint(lat, lon));
+		int latitude = intent.getIntExtra("latitude", Integer.MAX_VALUE);
+		int longitude = intent.getIntExtra("longitude", Integer.MAX_VALUE);
+		mapcontroller.animateTo(new GeoPoint(latitude, longitude));
 	
 		mapOverlays.add(itemsoverlay);
             
@@ -80,12 +78,11 @@ public class MapLocations extends MapActivity {
 		@Override
 		public void onLocationChanged(Location location) {
 			Toast.makeText(getApplicationContext(), "Latitude: " + location.getLatitude()+" Longitude: "+location.getLongitude(), Toast.LENGTH_SHORT).show();
-			//OverlayItem overlayitem = new OverlayItem(Locations.toGeoPoint(location),"Location","Latitude: "+String.valueOf(location.getLatitude())+"\n"+"Longitude: " +String.valueOf(location.getLongitude()));
-			GeoPoint geopoint = Locations.toGeoPoint(location);
+		    GeoPoint geopoint = Locations.toGeoPoint(location);
 			mapcontroller.animateTo(geopoint);
 			itemsoverlay.addOverlay(new OverlayItem(geopoint,"Location","Latitude: "+String.valueOf(location.getLatitude())+"\n"+"Longitude: " +String.valueOf(location.getLongitude())));
 			locations.add(location);
-			//mapOverlays.add(itemsoverlay);			
+						
 		
 	      }
 
