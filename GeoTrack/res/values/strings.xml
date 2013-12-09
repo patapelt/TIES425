@@ -8,5 +8,6 @@
     <string name="title_activity_list_view">ListView</string>
     <string name="title_activity_map">Map</string>
     <string name="title_activity_locations">Locations</string>
+    <string name="description">icon</string>
 
 </resources>

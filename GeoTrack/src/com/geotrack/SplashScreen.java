@@ -15,15 +15,18 @@ import android.widget.Toast;
 public class SplashScreen extends FragmentActivity {
  
 	public Locations locations = Locations.getInstance();
-	boolean ladattu = false;
-	 
+	boolean loaded = false;
+	LocationManager mLocationManager;
+   // LocationListener mLocationListener; 
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_screen);
 		
 		String context = Context.LOCATION_SERVICE;
-		LocationManager mLocationManager = (LocationManager) getSystemService(context);
+		mLocationManager = (LocationManager) getSystemService(context);		
 		Criteria criteria = new Criteria();
 		criteria.setAccuracy(Criteria.ACCURACY_FINE);
 		criteria.setAltitudeRequired(false);
@@ -32,8 +35,7 @@ public class SplashScreen extends FragmentActivity {
 		criteria.setCostAllowed(true);
 		criteria.setPowerRequirement(Criteria.POWER_HIGH);
 		String provider = mLocationManager.getBestProvider(criteria, false);
-		mLocationManager.requestLocationUpdates(provider, 0, 0, mLocationListener);	
-		
+		mLocationManager.requestLocationUpdates(provider, 0, 0, mLocationListener);		
 	}
 	
 
@@ -43,7 +45,7 @@ public class SplashScreen extends FragmentActivity {
 
 		@Override
 		public void onLocationChanged(Location location) {
-			Toast.makeText(getApplicationContext(), "Latitude:" + location.getLatitude()+" Longitude:"+location.getLongitude(), Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Latitude: " + location.getLatitude()+" Longitude: "+location.getLongitude(), Toast.LENGTH_SHORT).show();
 			locations.add(location);
 			
 			/*
@@ -53,14 +55,17 @@ public class SplashScreen extends FragmentActivity {
 */
 	
 			
-			if(ladattu == false) {
+			if(loaded == false) {
+		    loaded = true;
 			Intent intent = new Intent(SplashScreen.this, MainActivity.class);
 		    SplashScreen.this.startActivity(intent);
+		    mLocationManager.removeUpdates(mLocationListener);
+			mLocationManager = null;
+			mLocationListener = null;
 			}
-			//SplashScreen.this.finish();
-			ladattu = true;
-			
-		
+	
+			SplashScreen.this.finish();
+	
 	      }
 
 		@Override
