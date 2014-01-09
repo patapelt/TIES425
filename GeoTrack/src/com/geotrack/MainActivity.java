@@ -12,6 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+/**
+ * Sovelluksen p‰‰ikkuna.
+ * @author Pasi Peltonen
+ *
+ */
 public class MainActivity extends FragmentActivity {
 
 	
@@ -58,6 +63,10 @@ public class MainActivity extends FragmentActivity {
         return true;
     }
 
+	/**
+	 * Avataan about dialogi.
+	 * 
+	 */
 	public void openAbout() {
 		
         AlertDialog.Builder alertbox = new AlertDialog.Builder(this);

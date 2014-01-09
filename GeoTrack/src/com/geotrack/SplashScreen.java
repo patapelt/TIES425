@@ -12,6 +12,11 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.widget.Toast;
 
+/**
+ * Latausruutu.
+ * @author Pasi Peltonen
+ *
+ */
 public class SplashScreen extends FragmentActivity {
  
 	public Locations locations = Locations.getInstance();

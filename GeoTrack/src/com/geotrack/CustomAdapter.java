@@ -13,12 +13,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author Pasi Peltonen
+ *
+ */
 public class CustomAdapter extends ArrayAdapter<Location> {
 	  private final Context context;
 	  private final ArrayList<Location> values;
 	  private int layoutResourceId;
 
-	  public CustomAdapter(Context context, int textViewResourceId, ArrayList<Location> values) {
+	  /**
+	 * @param context
+	 * @param textViewResourceId
+	 * @param values
+	 */
+	public CustomAdapter(Context context, int textViewResourceId, ArrayList<Location> values) {
 	    super(context, textViewResourceId, values);
 	    this.context = context;
 	    this.layoutResourceId = textViewResourceId;

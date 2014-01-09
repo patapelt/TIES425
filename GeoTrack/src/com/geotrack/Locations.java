@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import com.google.android.maps.GeoPoint;
 import android.location.Location;
 
+/**
+ * Lista sijaintien säilömistä varten.
+ * @author Pasi Peltonen
+ *
+ */
 public class Locations {
 	
 	public static Locations instance;
@@ -15,19 +20,23 @@ public class Locations {
 		return instance;
 	}
 	
+	/**
+	 * Lisätään sijainti sijaintilistaan jos siellä ei vielä ole kyseistä sijaintia.
+	 * @param location
+	 */
 	public void add(Location location) {
 		if(!this.locations.contains(location)) {
 		this.locations.add(location);
 		}
 	}
 
+	/**
+	 * @return sijainnit
+	 */
 	public ArrayList<Location> getLocations() {
 		return locations;
 	}
 	
-	public static GeoPoint toGeoPoint(Location location) {
-		return new GeoPoint((int) (location.getLatitude() * 1E6),
-				(int) (location.getLongitude() * 1E6));
-	}
+
 
 }

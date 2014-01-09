@@ -12,6 +12,11 @@ import android.widget.ListView;
 
 
 
+/**
+ * Listaruutu sijainneille.
+ * @author Pasi Peltonen
+ *
+ */
 public class LocationList extends ListActivity {
  
 	private Locations locations = Locations.getInstance();
@@ -35,8 +40,8 @@ public class LocationList extends ListActivity {
 		if (location == null)
 			return;
 		Intent mapIntent = new Intent(view.getContext(), MapLocations.class);
-		mapIntent.putExtra("latitude", (int) (location.getLatitude() * 1E6));
-		mapIntent.putExtra("longitude", (int) (location.getLongitude() * 1E6));
+		mapIntent.putExtra("latitude", (double) (location.getLatitude()/* *1E6*/));
+		mapIntent.putExtra("longitude", (double) (location.getLongitude()/* * 1E6*/));
 		startActivity(mapIntent);
 	}
 	

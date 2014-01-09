@@ -1,37 +1,37 @@
 package com.geotrack;
 
-import java.util.List;
-
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapController;
-import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
 
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
-public class MapLocations extends MapActivity {
+/**
+ * Karttaruutu.
+ * @author Pasi Peltonen
+ *
+ */
+public class MapLocations extends FragmentActivity {
 
 	private Locations locations = Locations.getInstance();
 	private LocationManager mLocationManager;
-	private ItemsOverlay itemsoverlay;
 	
-
-	private List<Overlay> mapOverlays;
-	private MapController mapcontroller;
-	private MapView mapView;
+	
+	private GoogleMap mMap;
 	
 	
 	
@@ -40,34 +40,26 @@ public class MapLocations extends MapActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
 		
-        this.mapView = (MapView) findViewById(R.id.map);
-        mapView.setBuiltInZoomControls(true);
-        
-        mapOverlays = mapView.getOverlays();
-        Drawable drawable = this.getResources().getDrawable(R.drawable.ic_launcher);
-     
-
-        itemsoverlay = new ItemsOverlay(drawable, this);
-        
-       
-		for (Location location : locations.getLocations()) {
-			OverlayItem overlayitem = new OverlayItem(Locations.toGeoPoint(location),"Location","Latitude: "+String.valueOf(location.getLatitude())+"\n"+"Longitude: " +String.valueOf(location.getLongitude()));
-			
-			itemsoverlay.addOverlay(overlayitem);
+		mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+		
+	    for (Location location : locations.getLocations()) {
+	    	MarkerOptions marker =
+	    	new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Latitude: " + String.valueOf(location.getLatitude())+"Longitude: " + String.valueOf(location.getLongitude()));
+	    	mMap.addMarker(marker);
 	        
 		}
+ 
+
+	    
+		Bundle extras = getIntent().getExtras(); 
 		
-		
-        this.mapcontroller = mapView.getController();
-		
-		Intent intent = this.getIntent();
-		int latitude = intent.getIntExtra("latitude", Integer.MAX_VALUE);
-		int longitude = intent.getIntExtra("longitude", Integer.MAX_VALUE);
-		mapcontroller.animateTo(new GeoPoint(latitude, longitude));
-	
-		mapOverlays.add(itemsoverlay);
-            
-		
+		if(extras != null) {
+			double latitude = extras.getDouble("latitude");
+			double longitude = extras.getDouble("longitude");
+			CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latitude, longitude)).zoom(12).build();
+		    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+		}
+	    mMap.setMyLocationEnabled(true);
   		
 	}
 	
@@ -77,10 +69,16 @@ public class MapLocations extends MapActivity {
 
 		@Override
 		public void onLocationChanged(Location location) {
+			
 			Toast.makeText(getApplicationContext(), "Latitude: " + location.getLatitude()+" Longitude: "+location.getLongitude(), Toast.LENGTH_SHORT).show();
-		    GeoPoint geopoint = Locations.toGeoPoint(location);
-			mapcontroller.animateTo(geopoint);
-			itemsoverlay.addOverlay(new OverlayItem(geopoint,"Location","Latitude: "+String.valueOf(location.getLatitude())+"\n"+"Longitude: " +String.valueOf(location.getLongitude())));
+		    //GeoPoint geopoint = Locations.toGeoPoint(location);
+		    
+		    MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Latitude: " + String.valueOf(location.getLatitude())+"\n"+"Longitude: " + String.valueOf(location.getLongitude()));
+			mMap.addMarker(marker);
+			
+			CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(location.getLatitude(), location.getLongitude())).zoom(12).build();
+		    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+		    
 			locations.add(location);
 						
 		
@@ -121,6 +119,9 @@ public class MapLocations extends MapActivity {
 		mLocationManager.requestLocationUpdates(provider, 5000, 15, mLocationListener);
 	}
 	
+	/**
+	 * @param w
+	 */
 	public void onClick(View w) {
 		
 		Intent listIntent = new Intent(w.getContext(), LocationList.class);
@@ -143,11 +144,11 @@ public class MapLocations extends MapActivity {
 		return true;
 	}
 	
-
+/*
 	@Override
 	protected boolean isRouteDisplayed() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
+*/
 }
