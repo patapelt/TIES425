@@ -40,8 +40,8 @@ public class LocationList extends ListActivity {
 		if (location == null)
 			return;
 		Intent mapIntent = new Intent(view.getContext(), MapLocations.class);
-		mapIntent.putExtra("latitude", (double) (location.getLatitude()/* *1E6*/));
-		mapIntent.putExtra("longitude", (double) (location.getLongitude()/* * 1E6*/));
+		mapIntent.putExtra("latitude", (double) (location.getLatitude()));
+		mapIntent.putExtra("longitude", (double) (location.getLongitude()));
 		startActivity(mapIntent);
 	}
 	

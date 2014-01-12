@@ -71,7 +71,7 @@ public class MapLocations extends FragmentActivity {
 		public void onLocationChanged(Location location) {
 			
 			Toast.makeText(getApplicationContext(), "Latitude: " + location.getLatitude()+" Longitude: "+location.getLongitude(), Toast.LENGTH_SHORT).show();
-		    //GeoPoint geopoint = Locations.toGeoPoint(location);
+		    
 		    
 		    MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Latitude: " + String.valueOf(location.getLatitude())+"\n"+"Longitude: " + String.valueOf(location.getLongitude()));
 			mMap.addMarker(marker);
@@ -144,11 +144,4 @@ public class MapLocations extends FragmentActivity {
 		return true;
 	}
 	
-/*
-	@Override
-	protected boolean isRouteDisplayed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-*/
 }
