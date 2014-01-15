@@ -40,16 +40,13 @@ public class MapLocations extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
 		
-		mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+        mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 		
 	    for (Location location : locations.getLocations()) {
 	    	MarkerOptions marker =
 	    	new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Latitude: " + String.valueOf(location.getLatitude())+"Longitude: " + String.valueOf(location.getLongitude()));
 	    	mMap.addMarker(marker);
-	        
-		}
- 
-
+	    }
 	    
 		Bundle extras = getIntent().getExtras(); 
 		
@@ -60,10 +57,35 @@ public class MapLocations extends FragmentActivity {
 		    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 		}
 	    mMap.setMyLocationEnabled(true);
-  		
+	    
 	}
 	
-	
+	/**
+	 * @param savedInstanceState 
+	 * 
+	 */
+/*	public void onActivityCreated(Bundle savedInstanceState){
+		mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+		
+	    for (Location location : locations.getLocations()) {
+	    	MarkerOptions marker =
+	    	new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Latitude: " + String.valueOf(location.getLatitude())+"Longitude: " + String.valueOf(location.getLongitude()));
+	    	mMap.addMarker(marker);
+	        
+		}
+		
+		Bundle extras = getIntent().getExtras(); 
+		
+		if(extras != null) {
+			double latitude = extras.getDouble("latitude");
+			double longitude = extras.getDouble("longitude");
+			CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latitude, longitude)).zoom(12).build();
+		    mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+		}
+	    mMap.setMyLocationEnabled(true);
+	}
+ 
+*/
 	
 	private LocationListener mLocationListener = new LocationListener() {
 
@@ -116,7 +138,7 @@ public class MapLocations extends FragmentActivity {
 		criteria.setCostAllowed(true);
 		criteria.setPowerRequirement(Criteria.POWER_HIGH);
 		String provider = mLocationManager.getBestProvider(criteria, false);
-		mLocationManager.requestLocationUpdates(provider, 5000, 15, mLocationListener);
+		mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 15, mLocationListener);
 	}
 	
 	/**

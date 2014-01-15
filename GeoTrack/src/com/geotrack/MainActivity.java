@@ -30,6 +30,9 @@ public class MainActivity extends FragmentActivity {
 
 	}
 
+	/**
+	 * @param v
+	 */
 	public void onClick(View v) {
 	    	
 	    	switch(v.getId()) {

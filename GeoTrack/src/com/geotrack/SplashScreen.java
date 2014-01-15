@@ -39,8 +39,8 @@ public class SplashScreen extends FragmentActivity {
 		criteria.setSpeedRequired(false);
 		criteria.setCostAllowed(true);
 		criteria.setPowerRequirement(Criteria.POWER_HIGH);
-		String provider = mLocationManager.getBestProvider(criteria, false);
-		mLocationManager.requestLocationUpdates(provider, 0, 0, mLocationListener);		
+		//String provider = mLocationManager.getBestProvider(criteria, false);
+		mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);		
 	}
 	
 
